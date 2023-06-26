@@ -2,6 +2,7 @@ package com.lvictor.notes.simplenotes.framework
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.lvictor.notes.core.data.Note
 import com.lvictor.notes.simplenotes.framework.di.ApplicationModule
@@ -18,7 +19,9 @@ class ListViewModel(application: Application) : AndroidViewModel(application) {
     @Inject
     lateinit var useCases: UseCases
 
-    val notes = MutableLiveData<List<Note>>()
+    private val _notes = MutableLiveData<List<Note>>(arrayListOf())
+    val notes: LiveData<List<Note>>
+        get() = _notes
 
     init {
         DaggerViewModelComponent.builder().applicationModule(ApplicationModule(getApplication())).build().inject(this)
@@ -30,7 +33,7 @@ class ListViewModel(application: Application) : AndroidViewModel(application) {
             noteList.forEach {
                 it.wordCount = useCases.getWordCount(it)
             }
-            notes.postValue(noteList)
+            _notes.postValue(noteList)
         }
     }
 }
