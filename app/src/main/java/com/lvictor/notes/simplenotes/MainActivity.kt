@@ -13,6 +13,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.ViewModelProvider
 import com.lvictor.notes.simplenotes.framework.ListViewModel
 import com.lvictor.notes.simplenotes.framework.NoteViewModel
+import com.lvictor.notes.simplenotes.ui.screens.NoteScreen
 import com.lvictor.notes.simplenotes.ui.screens.NotesScreen
 import com.lvictor.notes.simplenotes.ui.theme.SimpleNotesTheme
 
@@ -33,8 +34,7 @@ class MainActivity : ComponentActivity() {
                 // A surface container using the 'background' color from the theme
                 Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
                     NotesScreen(viewModel = viewModel)
-//                    NoteScreen(viewModel = viewModelNote)
-//                    Log.d("liviu", System.currentTimeMillis().toString())
+//                    NoteScreen()
                 }
             }
         }
